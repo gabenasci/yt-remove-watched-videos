@@ -21,4 +21,4 @@ setInterval(function () {
     things.snapshotItem(i).click();
   }
 }, 1000);
-``
+```
