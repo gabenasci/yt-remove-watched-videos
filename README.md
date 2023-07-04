@@ -5,7 +5,7 @@ Simple script to paste in console to remove all watched videos from Watch Later 
 2. Open Developer Console pressing **F12** or **CTRL + SHIFT + I**
 3. Paste the following code in the console:
 
-```
+```javascript
 setInterval(function () {
   watchedVideo = document.querySelector('ytd-thumbnail-overlay-resume-playback-renderer').closest('#content')
   watchedVideoActionMenu = watchedVideo.nextElementSibling
