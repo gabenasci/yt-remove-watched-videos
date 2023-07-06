@@ -13,7 +13,7 @@ setInterval(function () {
   watchedVideoMenu = watchedVideo.nextElementSibling
   watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
   var things = document.evaluate(
-    '//span[contains(text(),"Watch Later")]',
+    '//span[contains(text(),"Remove from")]',
     document,
     null,
     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
@@ -37,7 +37,7 @@ setInterval(function () {
   watchedVideoMenu = watchedVideo.nextElementSibling
   watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
   var things = document.evaluate(
-    '//span[contains(text(),"Watch Later")]',
+    '//span[contains(text(),"Remove from")]',
     document,
     null,
     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
