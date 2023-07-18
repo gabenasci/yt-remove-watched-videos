@@ -30,7 +30,7 @@ This version is set to 55%
 
 ```javascript
 setInterval(function () {
-  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer > div.style-scope[style="width: 100%;"]`).closest('#content')
+  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer > div.style-scope[style="width: 55%;"]`).closest('#content')
   watchedVideoMenu = watchedVideo.nextElementSibling
   watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
   var things = document.evaluate(
