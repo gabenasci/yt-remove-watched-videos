@@ -106,3 +106,31 @@ setInterval(function() {
 
 
 ````
+
+And as I am not sure if two scripts will actually run together, try combining into one function
+
+```javascript
+
+setInterval(function () {
+  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content')
+  watchedVideoMenu = watchedVideo.nextElementSibling
+  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
+  var things = document.evaluate(
+    '//span[contains(text(),"Remove from")]',
+    document,
+    null,
+    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+    null
+  );
+  for (var i = 0; i < things.snapshotLength; i++) {
+    things.snapshotItem(i).click();
+  }
+window.scrollBy(0, window.innerHeight);
+}, 1000);
+
+
+
+
+
+```
+
