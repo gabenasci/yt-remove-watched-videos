@@ -26,27 +26,7 @@ setInterval(function () {
 
 ```
 <br>
-This version is set to 55%
 
-```javascript
-setInterval(function () {
-  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer > div.style-scope[style="width: 55%;"]`).closest('#content')
-  watchedVideoMenu = watchedVideo.nextElementSibling
-  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
-  var things = document.evaluate(
-    '//span[contains(text(),"Remove from")]',
-    document,
-    null,
-    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-    null
-  );
-  for (var i = 0; i < things.snapshotLength; i++) {
-    things.snapshotItem(i).click();
-  }
-}, 1000);
-
-```
-<br>
 
 ---
 
@@ -71,7 +51,8 @@ setInterval(function () {
 
 ```
 
-Here is a little code to scroll down the playlist and load more items. I think the progranm above errors when it runs out of pages
+You might find that the script stops working, once it runs out of videos that have loaded. 
+Here is a little code to scroll down the playlist and load more items. 
 
 ```javascript
 setInterval(function() {
@@ -80,34 +61,7 @@ setInterval(function() {
 
 ```
 
-And putting those last two together
-
-```javascript
-setInterval(function () {
-  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content')
-  watchedVideoMenu = watchedVideo.nextElementSibling
-  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
-  var things = document.evaluate(
-    '//span[contains(text(),"Remove from")]',
-    document,
-    null,
-    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-    null
-  );
-  for (var i = 0; i < things.snapshotLength; i++) {
-    things.snapshotItem(i).click();
-  }
-}, 1000);
-
-
-setInterval(function() {
-  window.scrollBy(0, window.innerHeight);
-}, 3000);
-
-
-````
-
-And as I am not sure if two scripts will actually run together, try combining into one function
+Putting the last two into a single function.
 
 ```javascript
 
@@ -127,8 +81,6 @@ setInterval(function () {
   }
 window.scrollBy(0, window.innerHeight);
 }, 1000);
-
-
 
 
 
