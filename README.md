@@ -27,6 +27,7 @@ setInterval(function () {
 ```
 <br>
 This version is set to 55%
+
 ```javascript
 setInterval(function () {
   watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer > div.style-scope[style="width: 100%;"]`).closest('#content')
