@@ -70,3 +70,39 @@ setInterval(function () {
 }, 1000);
 
 ```
+
+Here is a little code to scroll down the playlist and load more items. I think the progranm above errors when it runs out of pages
+
+```javascript
+setInterval(function() {
+  window.scrollBy(0, window.innerHeight);
+}, 3000);
+
+```
+
+And putting those last two together
+
+```javascript
+setInterval(function () {
+  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content')
+  watchedVideoMenu = watchedVideo.nextElementSibling
+  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
+  var things = document.evaluate(
+    '//span[contains(text(),"Remove from")]',
+    document,
+    null,
+    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+    null
+  );
+  for (var i = 0; i < things.snapshotLength; i++) {
+    things.snapshotItem(i).click();
+  }
+}, 1000);
+
+
+setInterval(function() {
+  window.scrollBy(0, window.innerHeight);
+}, 3000);
+
+
+````
