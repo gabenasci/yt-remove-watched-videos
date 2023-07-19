@@ -27,6 +27,7 @@ setInterval(function () {
 ```
 <br>
 
+
 ---
 
 If you would also like to remove partially watched videos from the Watch Later playlist, you can use the following script (does not check for width: 100% on the 'resume-pĺayback' progress bar):
@@ -49,3 +50,39 @@ setInterval(function () {
 }, 1000);
 
 ```
+
+You might find that the script stops working, once it runs out of videos that have loaded. 
+Here is a little code to scroll down the playlist and load more items. 
+
+```javascript
+setInterval(function() {
+  window.scrollBy(0, window.innerHeight);
+}, 3000);
+
+```
+
+Putting the last two into a single function.
+
+```javascript
+
+setInterval(function () {
+  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content')
+  watchedVideoMenu = watchedVideo.nextElementSibling
+  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
+  var things = document.evaluate(
+    '//span[contains(text(),"Remove from")]',
+    document,
+    null,
+    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+    null
+  );
+  for (var i = 0; i < things.snapshotLength; i++) {
+    things.snapshotItem(i).click();
+  }
+window.scrollBy(0, window.innerHeight);
+}, 1000);
+
+
+
+```
+
