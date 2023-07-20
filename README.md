@@ -9,22 +9,33 @@ This simple console script will remove all fully watched videos from Watch Later
 
 ```javascript
 setInterval(function () {
-  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer > div.style-scope[style="width: 100%;"]`).closest('#content')
-  watchedVideoMenu = watchedVideo.nextElementSibling
-  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
-  var things = document.evaluate(
-    '//span[contains(text(),"Remove from")]',
-    document,
-    null,
-    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-    null
-  );
-  for (var i = 0; i < things.snapshotLength; i++) {
-    things.snapshotItem(i).click();
+  try {
+    watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer > div.style-scope[style="width: 100%;"]`).closest('#content');
+    watchedVideoMenu = watchedVideo.nextElementSibling;
+    watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
+    var things = document.evaluate(
+      '//span[contains(text(),"Remove from")]',
+      document,
+      null,
+      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+      null
+    );
+    for (var i = 0; i < things.snapshotLength; i++) {
+      things.snapshotItem(i).click();
+    }
+    console.log("Watched video removed");
   }
+  catch(err) {
+    if(err.constructor = TypeError){
+      console.log("No watched videos loaded on page, scrolling down to load more videos.");
+    }
+    else{
+      console.log(`Error: ${err}`);
+    }
+  }
+  hideActionMenu = document.querySelector('body').click();
   window.scrollBy(0, window.innerHeight);
-}, 1000);
-
+}, 2000);
 ```
 
 ---
@@ -33,22 +44,33 @@ If you would also like to remove partially watched videos from the Watch Later p
 
 ```javascript
 setInterval(function () {
-  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content')
-  watchedVideoMenu = watchedVideo.nextElementSibling
-  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
-  var things = document.evaluate(
-    '//span[contains(text(),"Remove from")]',
-    document,
-    null,
-    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-    null
-  );
-  for (var i = 0; i < things.snapshotLength; i++) {
-    things.snapshotItem(i).click();
+  try {
+    watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content');
+    watchedVideoMenu = watchedVideo.nextElementSibling;
+    watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
+    var things = document.evaluate(
+      '//span[contains(text(),"Remove from")]',
+      document,
+      null,
+      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+      null
+    );
+    for (var i = 0; i < things.snapshotLength; i++) {
+      things.snapshotItem(i).click();
+    }
+    console.log("Watched video removed");
   }
+  catch(err) {
+    if(err.constructor = TypeError){
+      console.log("No watched videos loaded on page, scrolling down to load more videos.");
+    }
+    else{
+      console.log(`Error: ${err}`);
+    }
+  }
+  hideActionMenu = document.querySelector('body').click();
   window.scrollBy(0, window.innerHeight);
-}, 1000);
-
+}, 2000);
 ```
 ---
 Previously, the script would fail once it had removed all the videos that had been loaded onto the page. With the help of <a href="https://github.com/imogenwren">Imogen Wren</a>, the following scrollBy function was added to the end of the scripts to scroll down the page continually as it removes videos from the playlist. 
