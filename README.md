@@ -5,7 +5,7 @@ This simple console script will remove all fully watched videos from Watch Later
 
 1. Go to your [Watch Later playlist](https://www.youtube.com/playlist?list=WL)
 2. Open Developer Console pressing **F12** or **CTRL + SHIFT + I**
-3. Paste the following code in the console and press **Enter**:
+3. Paste the following code in the console and press **ENTER**:
 
 ```javascript
 setInterval(function () {
@@ -22,11 +22,10 @@ setInterval(function () {
   for (var i = 0; i < things.snapshotLength; i++) {
     things.snapshotItem(i).click();
   }
+  window.scrollBy(0, window.innerHeight);
 }, 1000);
 
 ```
-<br>
-
 
 ---
 
@@ -47,42 +46,16 @@ setInterval(function () {
   for (var i = 0; i < things.snapshotLength; i++) {
     things.snapshotItem(i).click();
   }
-}, 1000);
-
-```
-
-You might find that the script stops working, once it runs out of videos that have loaded. 
-Here is a little code to scroll down the playlist and load more items. 
-
-```javascript
-setInterval(function() {
   window.scrollBy(0, window.innerHeight);
-}, 3000);
-
-```
-
-Putting the last two into a single function.
-
-```javascript
-
-setInterval(function () {
-  watchedVideo = document.querySelector(`ytd-thumbnail-overlay-resume-playback-renderer`).closest('#content')
-  watchedVideoMenu = watchedVideo.nextElementSibling
-  watchedVideoMenu.querySelector('#primary button[aria-label="Action menu"]').click();
-  var things = document.evaluate(
-    '//span[contains(text(),"Remove from")]',
-    document,
-    null,
-    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-    null
-  );
-  for (var i = 0; i < things.snapshotLength; i++) {
-    things.snapshotItem(i).click();
-  }
-window.scrollBy(0, window.innerHeight);
 }, 1000);
 
-
-
 ```
+---
+Previously, the script would fail once it had removed all the videos that had been loaded onto the page. With the help of <a href="https://github.com/imogenwren">Imogen Wren</a>, the following scrollBy function was added to the end of the scripts to scroll down the page continually as it removes videos from the playlist. 
+
+```javascript
+window.scrollBy(0, window.innerHeight);
+```
+
+
 
