@@ -7,6 +7,7 @@ This simple console script will remove all fully watched videos from Watch Later
 2. Open Developer Console pressing **F12** or **CTRL + SHIFT + I**
 3. Paste the following code in the console and press **ENTER**:
 
+## Remove fully watched videos
 ```javascript
 setInterval(function () {
   try {
@@ -42,6 +43,7 @@ setInterval(function () {
 
 If you would also like to remove partially watched videos from the Watch Later playlist, you can use the following script (does not check for width: 100% on the 'resume-pĺayback' progress bar):
 
+## Remove partially watched videos
 ```javascript
 setInterval(function () {
   try {
@@ -72,12 +74,37 @@ setInterval(function () {
   window.scrollBy(0, window.innerHeight);
 }, 2000);
 ```
----
-Previously, the script would fail once it had removed all the videos that had been loaded onto the page. With the help of <a href="https://github.com/imogenwren">Imogen Wren</a>, the following scrollBy function was added to the end of the scripts to scroll down the page continually as it removes videos from the playlist. 
 
+## Remove all videos in Watch Later
+```javascript
+setInterval(function () {
+  try {
+    document.querySelector('#primary button[aria-label="Action menu"]').click();
+    var things = document.evaluate(
+      '//span[contains(text(),"Remove from")]',
+      document,
+      null,
+      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+      null
+    );
+    for (var i = 0; i < things.snapshotLength; i++) {
+      things.snapshotItem(i).click();
+    }
+    console.log("Watched video removed");
+  }
+  catch(err) {
+    if(err.constructor = TypeError){
+      console.log("No watched videos loaded on page, scrolling down to load more videos.");
+    }
+    else{
+      console.log(`Error: ${err}`);
+    }
+  }
+  hideActionMenu = document.querySelector('body').click();
+  window.scrollBy(0, window.innerHeight);
+}, 2000);
+```
+---
 ```javascript
 window.scrollBy(0, window.innerHeight);
 ```
-
-
-
