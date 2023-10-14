@@ -40,10 +40,10 @@ setInterval(function () {
 ```
 
 ---
+## Remove partially watched videos
 
 If you would also like to remove partially watched videos from the Watch Later playlist, you can use the following script (does not check for width: 100% on the 'resume-pĺayback' progress bar):
 
-## Remove partially watched videos
 ```javascript
 setInterval(function () {
   try {
@@ -74,7 +74,7 @@ setInterval(function () {
   window.scrollBy(0, window.innerHeight);
 }, 2000);
 ```
-
+---
 ## Remove all videos in Watch Later
 ```javascript
 setInterval(function () {
@@ -104,7 +104,4 @@ setInterval(function () {
   window.scrollBy(0, window.innerHeight);
 }, 2000);
 ```
----
-```javascript
-window.scrollBy(0, window.innerHeight);
-```
+
